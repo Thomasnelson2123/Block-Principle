@@ -8,17 +8,36 @@ public class TileInteraction : MonoBehaviour
 {
 
     private Grid grid;
-    [SerializeField] private Tilemap interactiveMap = null;
-    [SerializeField] private Tilemap pathMap = null;
+    [SerializeField] private Tilemap backMap = null;
+    [SerializeField] private Tilemap frontMap = null;
+    [SerializeField] private Tilemap UIMap = null;
     [SerializeField] private Tile hoverTile = null;
-    [SerializeField] private Tile pathTile = null;
+    [SerializeField] private Tile block = null;
     [SerializeField] private Tile backGround = null;
 
-    //[SerializeField] private Tile[] blocks = null;
-    //[SerializeField] private int[] blockNums = null;
+    [SerializeField] private Tile[] blocks = null;      // an array that corresponds to the block types
+    [SerializeField] private int[] blockNums = null;    // an array that corresponds to the number of each type of block for a particular level
+
+    [SerializeField] UserInterface ui;
 
 
     private Vector3Int previousMousePos = new Vector3Int();
+
+    // these enums will more than likely be unnecessary, TBD
+    enum Block
+    {
+        Grey,   //0
+        White,  //1
+        Red,    //2
+        Blue,   //3
+        Yellow, //4
+        Green,  //5
+        Purple, //6
+        Orange, //7
+        Brown   //8
+    }
+
+    Block currentBlock = Block.Grey;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +52,12 @@ public class TileInteraction : MonoBehaviour
         // Mouse over -> highlight tile
         Vector3Int mousePos = GetMousePosition();
         
-
-        if (interactiveMap.GetTile(mousePos) != backGround && interactiveMap.GetTile(mousePos) != hoverTile)
+        // for dealing with placing the hover selection icon
+        if (backMap.GetTile(mousePos) != backGround && backMap.GetTile(mousePos) != hoverTile)
         {
-            if (interactiveMap.GetTile(previousMousePos) == backGround || interactiveMap.GetTile(previousMousePos) == hoverTile)
+            if (backMap.GetTile(previousMousePos) == backGround || UIMap.GetTile(previousMousePos) == hoverTile)
             {
-                interactiveMap.SetTile(previousMousePos, backGround);
+                UIMap.SetTile(previousMousePos, null);
             }
                 
                      
@@ -47,14 +66,14 @@ public class TileInteraction : MonoBehaviour
         {
             if (!mousePos.Equals(previousMousePos))
             {
-                if (interactiveMap.GetTile(mousePos) == backGround)
+                if (backMap.GetTile(mousePos) == backGround)
                 {
-                    if(interactiveMap.GetTile(previousMousePos) == backGround || interactiveMap.GetTile(previousMousePos) == hoverTile)
+                    if(backMap.GetTile(previousMousePos) == backGround || UIMap.GetTile(previousMousePos) == hoverTile)
                     {
-                        interactiveMap.SetTile(previousMousePos, backGround); // Remove old hoverTile
+                        UIMap.SetTile(previousMousePos, null); // Remove old block
                         
                     }
-                    interactiveMap.SetTile(mousePos, hoverTile);
+                    UIMap.SetTile(mousePos, hoverTile);
                 }                
                 
             }
@@ -62,13 +81,13 @@ public class TileInteraction : MonoBehaviour
             // Left mouse click -> add path tile
             if (Input.GetMouseButton(0))
             {
-                pathMap.SetTile(mousePos, pathTile);
+                frontMap.SetTile(mousePos, blocks[AssignBlock()]);
             }
 
             // Right mouse click -> remove path tile
             if (Input.GetMouseButton(1))
             {
-                pathMap.SetTile(mousePos, null);
+                frontMap.SetTile(mousePos, null);
             }
         }
         previousMousePos = mousePos;
@@ -78,6 +97,18 @@ public class TileInteraction : MonoBehaviour
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return grid.WorldToCell(mouseWorldPos);
+    }
+
+    // I will have a seperate script for button presses, which will tell us
+    // what block we are currently using. This script is also going to communicate back to the 
+    // UI / button script, telling it what to display
+    // that is, this script will know what blocks are available per level, and the number of which as well
+
+    
+    private int AssignBlock()
+    {
+        currentBlock = (Block)ui.GetBlock();
+        return (int)currentBlock;
     }
 }
 
