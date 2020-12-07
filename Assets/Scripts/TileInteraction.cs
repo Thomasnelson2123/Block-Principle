@@ -12,7 +12,6 @@ public class TileInteraction : MonoBehaviour
     [SerializeField] private Tilemap frontMap = null;
     [SerializeField] private Tilemap UIMap = null;
     [SerializeField] private Tile hoverTile = null;
-    [SerializeField] private Tile block = null;
     [SerializeField] private Tile backGround = null;
 
     [SerializeField] private Tile[] blocks = null;      // an array that corresponds to the block types
@@ -43,6 +42,7 @@ public class TileInteraction : MonoBehaviour
     void Start()
     {
         grid = gameObject.GetComponent<Grid>();
+        
     }
 
     // Update is called once per frame
@@ -104,11 +104,13 @@ public class TileInteraction : MonoBehaviour
     // UI / button script, telling it what to display
     // that is, this script will know what blocks are available per level, and the number of which as well
 
-    
+
     private int AssignBlock()
     {
         currentBlock = (Block)ui.GetBlock();
         return (int)currentBlock;
     }
+
+
 }
 

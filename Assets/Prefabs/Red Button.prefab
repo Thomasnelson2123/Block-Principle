@@ -119,7 +119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8321077626112105787, guid: 23bdc7c87b3758142a89d25c1c2b856c,
+      - m_Target: {fileID: 7180437923767680244, guid: 23bdc7c87b3758142a89d25c1c2b856c,
           type: 3}
         m_MethodName: SetBlock
         m_Mode: 3
