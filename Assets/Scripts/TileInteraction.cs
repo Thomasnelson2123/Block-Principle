@@ -79,7 +79,7 @@ public class TileInteraction : MonoBehaviour
             }
 
             // Left mouse click -> add path tile
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && (frontMap.GetTile(mousePos) == null))
             {
                 frontMap.SetTile(mousePos, blocks[AssignBlock()]);
             }

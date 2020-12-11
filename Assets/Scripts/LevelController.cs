@@ -12,8 +12,12 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] private GameObject[] buttons = null;
 
-    
+    [SerializeField] private GameObject dropDown = null;
+    [SerializeField] private Vector2 dropDownCoord;
 
+    [SerializeField] RectTransform rectTransDropDown;
+
+    Vector2 initialPos;
 
     // general process:
     // in unity, per each level, I want to designate which blocks are available in a stage in one array
@@ -26,6 +30,8 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         WorldtoCanvasCoords();
+        initialPos = rectTransDropDown.anchoredPosition;
+        Debug.Log(rectTransDropDown.anchoredPosition);
     }
  
 
@@ -34,12 +40,35 @@ public class LevelController : MonoBehaviour
     // places the buttons on screen in correct place
     private void WorldtoCanvasCoords()
     {
-        float x = -12.7f;
+        float x = -16f;
         foreach (GameObject b in buttons)
         {
             b.transform.position = new Vector2(x, 9.4f);
+            //b.SetActive(false);
             x += 4.4f;
+            b.SetActive(false);
+            
         }
+    }
+
+    // this method is called when the drop down button is pressed
+    public void DropDownMenu()
+    {
+        foreach (GameObject b in buttons)
+        {
+            b.SetActive(!b.activeInHierarchy);
+        }
+       
+        // move the drop down button
+        if (rectTransDropDown.anchoredPosition == initialPos)
+        {
+            rectTransDropDown.anchoredPosition = dropDownCoord;
+        }
+        else
+        {
+            rectTransDropDown.anchoredPosition = initialPos;
+        }
+        
     }
 
     
