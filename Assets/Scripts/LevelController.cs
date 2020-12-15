@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] RectTransform rectTransDropDown;
 
+    
+
     Vector2 initialPos;
 
     // general process:
@@ -40,12 +42,12 @@ public class LevelController : MonoBehaviour
     // places the buttons on screen in correct place
     private void WorldtoCanvasCoords()
     {
-        float x = -16f;
+        float x = -15f;
         foreach (GameObject b in buttons)
         {
             b.transform.position = new Vector2(x, 9.4f);
             //b.SetActive(false);
-            x += 4.4f;
+            x += 5.8f;
             b.SetActive(false);
             
         }
@@ -70,6 +72,8 @@ public class LevelController : MonoBehaviour
         }
         
     }
+
+
 
     
 }

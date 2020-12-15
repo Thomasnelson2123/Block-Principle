@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
 {
-    private int block;
+    [SerializeField] Image[] numbers;
+    [SerializeField] Image displayedNumber;
+
+    private int block = 100;
+    
     public int GetBlock()
     {
         return block;
@@ -14,6 +19,8 @@ public class UserInterface : MonoBehaviour
     {
         this.block = block;
     }
+
+    
 
 
 

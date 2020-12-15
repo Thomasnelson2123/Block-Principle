@@ -22,6 +22,8 @@ public class TileInteraction : MonoBehaviour
 
     private Vector3Int previousMousePos = new Vector3Int();
 
+    private int block;
+
     // these enums will more than likely be unnecessary, TBD
     enum Block
     {
@@ -36,8 +38,6 @@ public class TileInteraction : MonoBehaviour
         Brown   //8
     }
 
-    Block currentBlock = Block.Grey;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +51,7 @@ public class TileInteraction : MonoBehaviour
         
         // Mouse over -> highlight tile
         Vector3Int mousePos = GetMousePosition();
-        
+        AssignBlock();
         // for dealing with placing the hover selection icon
         if (backMap.GetTile(mousePos) != backGround && backMap.GetTile(mousePos) != hoverTile)
         {
@@ -77,20 +77,38 @@ public class TileInteraction : MonoBehaviour
                 }                
                 
             }
-
-            // Left mouse click -> add path tile
-            if (Input.GetMouseButton(0) && (frontMap.GetTile(mousePos) == null))
+            // block is initially set as 100 until otherwise. This if is to avoid errors.
+            if (block != 100)
             {
-                frontMap.SetTile(mousePos, blocks[AssignBlock()]);
-            }
+                // Left mouse click -> add block tile
+                if (Input.GetMouseButton(0) && (frontMap.GetTile(mousePos) == null) && blockNums[block] > 0)
+                {
+                    frontMap.SetTile(mousePos, blocks[block]);
 
-            // Right mouse click -> remove path tile
-            if (Input.GetMouseButton(1))
-            {
-                frontMap.SetTile(mousePos, null);
+                    // subtract one from block selection
+                    ManageBlockSelection(block, -1);
+
+                    // update UI
+
+
+
+                }
+
+                // Right mouse click -> remove block tile
+                if (Input.GetMouseButton(1) && frontMap.GetTile(mousePos) == blocks[block])
+                {
+                    frontMap.SetTile(mousePos, null);
+
+                    // add one to block selection
+                    ManageBlockSelection(block, 1);
+
+                    // update UI
+
+                }
             }
         }
         previousMousePos = mousePos;
+        
     }
 
     Vector3Int GetMousePosition()
@@ -105,11 +123,17 @@ public class TileInteraction : MonoBehaviour
     // that is, this script will know what blocks are available per level, and the number of which as well
 
 
-    private int AssignBlock()
+    private void AssignBlock()
     {
-        currentBlock = (Block)ui.GetBlock();
-        return (int)currentBlock;
+        block = ui.GetBlock();
+        
     }
+
+    private void ManageBlockSelection(int blockType, int db)
+    {
+        blockNums[blockType] += db;
+    }
+
 
 
 }
