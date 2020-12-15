@@ -31855,6 +31855,7 @@ GameObject:
   - component: {fileID: 749923123}
   - component: {fileID: 749923125}
   - component: {fileID: 749923124}
+  - component: {fileID: 749923126}
   m_Layer: 5
   m_Name: Blue Panel
   m_TagString: Untagged
@@ -31922,6 +31923,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749923122}
   m_CullTransparentMesh: 0
+--- !u!114 &749923126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749923122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ad0a4ac38e7545934c4d6d1ecf889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tensPlace: {fileID: 339458391}
+  onesPlace: {fileID: 1762676833}
+  numbers:
+  - {fileID: 11400000, guid: 630071815db07d848b34e8e9fe75fc8a, type: 2}
+  - {fileID: 11400000, guid: 054f10b62b598e94383f6d70ac4c1bf9, type: 2}
+  - {fileID: 11400000, guid: 6fd298297826b304185307cc15f9e1f9, type: 2}
+  - {fileID: 11400000, guid: 59460617dd0e09c488cc195db8aa2cb8, type: 2}
+  - {fileID: 11400000, guid: 7479343d2ccf54749aee2b468ce21333, type: 2}
+  - {fileID: 11400000, guid: 850dd0edbf4ce6946b9cfbe9db49530e, type: 2}
+  - {fileID: 11400000, guid: f50bcf39d433b7241a52a7a8a695f529, type: 2}
+  - {fileID: 11400000, guid: d1d674209ff062d4d9eb0ee5a7665372, type: 2}
+  - {fileID: 11400000, guid: 182ce3b795f957c43a64949a557c2a99, type: 2}
+  - {fileID: 11400000, guid: 8bb3697fb0545104da9c922eab557bce, type: 2}
+  grid: {fileID: 1208295350}
+  blockType: 3
 --- !u!1 &771505888
 GameObject:
   m_ObjectHideFlags: 0
@@ -32113,8 +32141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aec61ae128f0842a493537443f96ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numbers: []
-  displayedNumber: {fileID: 0}
 --- !u!1 &962907368
 GameObject:
   m_ObjectHideFlags: 0
@@ -32349,8 +32375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aec61ae128f0842a493537443f96ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numbers: []
-  displayedNumber: {fileID: 0}
 --- !u!1 &1517882635
 GameObject:
   m_ObjectHideFlags: 0
@@ -32362,6 +32386,7 @@ GameObject:
   - component: {fileID: 1517882636}
   - component: {fileID: 1517882638}
   - component: {fileID: 1517882637}
+  - component: {fileID: 1517882639}
   m_Layer: 5
   m_Name: Red Panel
   m_TagString: Untagged
@@ -32429,6 +32454,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517882635}
   m_CullTransparentMesh: 0
+--- !u!114 &1517882639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517882635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ad0a4ac38e7545934c4d6d1ecf889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tensPlace: {fileID: 962907370}
+  onesPlace: {fileID: 583128252}
+  numbers:
+  - {fileID: 11400000, guid: 630071815db07d848b34e8e9fe75fc8a, type: 2}
+  - {fileID: 11400000, guid: 054f10b62b598e94383f6d70ac4c1bf9, type: 2}
+  - {fileID: 11400000, guid: 6fd298297826b304185307cc15f9e1f9, type: 2}
+  - {fileID: 11400000, guid: 59460617dd0e09c488cc195db8aa2cb8, type: 2}
+  - {fileID: 11400000, guid: 7479343d2ccf54749aee2b468ce21333, type: 2}
+  - {fileID: 11400000, guid: 850dd0edbf4ce6946b9cfbe9db49530e, type: 2}
+  - {fileID: 11400000, guid: f50bcf39d433b7241a52a7a8a695f529, type: 2}
+  - {fileID: 11400000, guid: d1d674209ff062d4d9eb0ee5a7665372, type: 2}
+  - {fileID: 11400000, guid: 182ce3b795f957c43a64949a557c2a99, type: 2}
+  - {fileID: 11400000, guid: 8bb3697fb0545104da9c922eab557bce, type: 2}
+  grid: {fileID: 1208295350}
+  blockType: 2
 --- !u!1 &1592927503
 GameObject:
   m_ObjectHideFlags: 0

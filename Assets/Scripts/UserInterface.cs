@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
 {
-    [SerializeField] Image[] numbers;
-    [SerializeField] Image displayedNumber;
+    
+    
 
     private int block = 100;
     
@@ -20,8 +20,8 @@ public class UserInterface : MonoBehaviour
         this.block = block;
     }
 
+   
+
     
-
-
 
 }

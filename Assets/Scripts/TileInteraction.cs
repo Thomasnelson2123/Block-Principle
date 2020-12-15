@@ -117,24 +117,26 @@ public class TileInteraction : MonoBehaviour
         return grid.WorldToCell(mouseWorldPos);
     }
 
-    // I will have a seperate script for button presses, which will tell us
-    // what block we are currently using. This script is also going to communicate back to the 
-    // UI / button script, telling it what to display
-    // that is, this script will know what blocks are available per level, and the number of which as well
 
-
+    // gets the current block being used from whatever button was pressed
     private void AssignBlock()
     {
         block = ui.GetBlock();
         
     }
 
+    // called after the removal or placement of every block. increments by one the number 
+    // of that block appropriately 
     private void ManageBlockSelection(int blockType, int db)
     {
         blockNums[blockType] += db;
     }
 
-
+    // will return the number of a specified block type remaining
+    public int GetBlockNum(int blockType)
+    {
+        return blockNums[blockType];
+    }
 
 }
 
