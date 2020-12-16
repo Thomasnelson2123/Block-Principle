@@ -641,6 +641,12 @@
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

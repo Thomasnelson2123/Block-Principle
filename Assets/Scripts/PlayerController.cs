@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 
     public UnityEvent OnLandEvent;
 
+    [SerializeField] private float fallMultiplier;
+    [SerializeField] private float lowJumpMultiplier;
+
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
@@ -49,6 +52,14 @@ public class PlayerController : MonoBehaviour
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
+        }
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
