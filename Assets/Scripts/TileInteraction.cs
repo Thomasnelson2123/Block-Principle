@@ -19,6 +19,10 @@ public class TileInteraction : MonoBehaviour
 
     [SerializeField] UserInterface ui;
 
+    [SerializeField] private Rigidbody2D rbPlayer;
+    [SerializeField] private Tile skullBlock;
+
+
 
     private Vector3Int previousMousePos = new Vector3Int();
 
@@ -137,6 +141,8 @@ public class TileInteraction : MonoBehaviour
     {
         return blockNums[blockType];
     }
+
+   
 
 }
 

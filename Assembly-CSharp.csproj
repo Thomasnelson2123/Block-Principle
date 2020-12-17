@@ -62,10 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
     <Compile Include="Assets\Scripts\Panels.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PrefabBrush.cs" />
     <Compile Include="Assets\Scripts\TileInteraction.cs" />
     <Compile Include="Assets\Scripts\UserInterface.cs" />
     <Reference Include="UnityEngine">
@@ -608,6 +610,9 @@
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -632,6 +637,9 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
@@ -640,12 +648,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:/Users/thoma/OneDrive/Documents/Projects/Unity/Principle of Blocks/Block Principle/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

@@ -10,6 +10,8 @@ public class MovementController : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
+    [SerializeField] GameController gameState;
+
    
 
     // Update is called once per frame
@@ -27,5 +29,13 @@ public class MovementController : MonoBehaviour
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.name == "skull(Clone)")
+        {
+            gameState.SetGameState(0);
+        }
     }
 }
