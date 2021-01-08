@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour
     {
         gameOver,
         normal,
-        menu
+        menu,
+        jump
     }
 
     private GameState state = GameState.normal;
@@ -18,8 +19,22 @@ public class GameController : MonoBehaviour
         state = (GameState)gameState;
     }
 
-    public int GetGameState()
+
+    public bool isNormal() { return state == GameState.normal; }
+
+    public bool isGameOver() { return state == GameState.gameOver; }
+
+    public bool isMenu() { return state == GameState.menu; }
+
+    public void GetStateOfMenu(bool menuOpen)
     {
-        return (int)state;
+        GameState previousState = state;
+        if (menuOpen)
+        { 
+            state = GameState.menu;
+        }         
+        else
+            state = previousState;
     }
+
 }

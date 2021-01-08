@@ -16,7 +16,7 @@ public class LevelController : MonoBehaviour
     {
         // will do more later than just restart level
         // i.e kick out to menu, or display death animation, reduce lives, etc
-        if(gameState.GetGameState() == 0)
+        if(gameState.isGameOver())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

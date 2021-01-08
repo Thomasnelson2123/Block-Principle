@@ -27,8 +27,11 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
         jump = false;
+        
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

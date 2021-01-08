@@ -20,6 +20,7 @@ public class TileInteraction : MonoBehaviour
     [SerializeField] UserInterface ui;
 
     [SerializeField] private Rigidbody2D rbPlayer;
+    [SerializeField] private Collider2D colPlayer;
     [SerializeField] private Tile skullBlock;
 
 
@@ -52,19 +53,26 @@ public class TileInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetPlayerLocations();
         // Mouse over -> highlight tile
         Vector3Int mousePos = GetMousePosition();
         AssignBlock();
         // for dealing with placing the hover selection icon
-        if (backMap.GetTile(mousePos) != backGround && backMap.GetTile(mousePos) != hoverTile)
+        if (UIMap.GetTile(mousePos) == hoverTile && GetPlayerLocations().Contains(mousePos))
+        {
+            UIMap.SetTile(previousMousePos, null);
+        }
+        if (backMap.GetTile(mousePos) == backGround && !GetPlayerLocations().Contains(mousePos))
+        {
+            UIMap.SetTile(mousePos, hoverTile);
+        }
+        if (backMap.GetTile(mousePos) != backGround && UIMap.GetTile(mousePos) != hoverTile)
         {
             if (backMap.GetTile(previousMousePos) == backGround || UIMap.GetTile(previousMousePos) == hoverTile)
             {
                 UIMap.SetTile(previousMousePos, null);
             }
-                
-                     
+           
         }
         else
         {
@@ -77,7 +85,8 @@ public class TileInteraction : MonoBehaviour
                         UIMap.SetTile(previousMousePos, null); // Remove old block
                         
                     }
-                    UIMap.SetTile(mousePos, hoverTile);
+                    if (!GetPlayerLocations().Contains(mousePos))
+                        UIMap.SetTile(mousePos, hoverTile);
                 }                
                 
             }
@@ -85,7 +94,7 @@ public class TileInteraction : MonoBehaviour
             if (block != 100)
             {
                 // Left mouse click -> add block tile
-                if (Input.GetMouseButton(0) && (frontMap.GetTile(mousePos) == null) && blockNums[block] > 0)
+                if (Input.GetMouseButton(0) && (frontMap.GetTile(mousePos) == null) && blockNums[block] > 0 && !GetPlayerLocations().Contains(mousePos))
                 {
                     frontMap.SetTile(mousePos, blocks[block]);
 
@@ -141,6 +150,30 @@ public class TileInteraction : MonoBehaviour
     {
         return blockNums[blockType];
     }
+
+    // this method will find the tile spaces that the player is occupying, put those coords into a list, and return it
+    private List<Vector3Int> GetPlayerLocations()
+    {       
+
+        List<Vector3Int> occupiedTiles = new List<Vector3Int>();
+        Vector3 center = colPlayer.bounds.center;
+        Vector3 extents = colPlayer.bounds.extents;
+
+        // find the 4 corners of the players collider; these are the coords that the player occupies
+        Vector3 topLeft = new Vector3(center.x - extents.x, center.y + extents.y); 
+        Vector3 topRight = new Vector3(center.x + extents.x, center.y + extents.y);
+        Vector3 bottomLeft = new Vector3(center.x - extents.x, center.y - extents.y);
+        Vector3 bottomRight = new Vector3(center.x + extents.x, center.y - extents.y);
+
+        // add those coords to a list and return
+        occupiedTiles.Add(UIMap.WorldToCell(topLeft));
+        occupiedTiles.Add(UIMap.WorldToCell(topRight));
+        occupiedTiles.Add(UIMap.WorldToCell(bottomLeft));
+        occupiedTiles.Add(UIMap.WorldToCell(bottomRight));
+
+        return occupiedTiles;
+    }
+
 
    
 

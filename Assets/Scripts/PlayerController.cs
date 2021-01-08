@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallMultiplier;
     [SerializeField] private float lowJumpMultiplier;
 
+    [SerializeField] GameController gameState;
+    bool menuCheck = true;
+    Vector3 pausedSpeed;
+
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
@@ -38,6 +42,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+      
+       
         bool wasGrounded = isGrounded;
         isGrounded = false;
 
@@ -49,6 +55,7 @@ public class PlayerController : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 isGrounded = true;
+                gameState.SetGameState(1);
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
@@ -61,10 +68,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
+
+        
+
     }
 
     public void Move(float move, bool jump)
     {
+
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, rb.velocity.y);
         // And then smoothing it out and applying it to the character
@@ -88,6 +100,7 @@ public class PlayerController : MonoBehaviour
             // Add a vertical force to the player.
             isGrounded = false;
             rb.AddForce(new Vector2(0f, jumpForce));
+            gameState.SetGameState(3);
         }
     }
 

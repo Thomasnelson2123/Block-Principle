@@ -7,6 +7,7 @@ public class UserInterface : MonoBehaviour
 {
 
     private int block = 100;
+    [SerializeField] GameController gameState;
     
     public int GetBlock()
     {
@@ -21,6 +22,7 @@ public class UserInterface : MonoBehaviour
     public void OpenMenu(GameObject menu)
     {
         menu.SetActive(!menu.activeSelf);
+        gameState.GetStateOfMenu(menu.activeSelf);
     }
 
     [SerializeField] private GameObject[] buttons = null;
@@ -60,7 +62,7 @@ public class UserInterface : MonoBehaviour
         {
             b.transform.position = new Vector2(x, 9.4f);
             //b.SetActive(false);
-            x += 5.8f;
+            x += 6.5f;
             b.SetActive(false);
 
         }
