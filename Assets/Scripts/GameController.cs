@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
         jump
     }
 
+    [SerializeField] private LevelController levelController;
+
     private GameState state = GameState.normal;
 
     public void SetGameState(int gameState)
@@ -36,5 +38,27 @@ public class GameController : MonoBehaviour
         else
             state = previousState;
     }
+
+    public void SetJump(bool isJumping)
+    {
+        if (isJumping)
+            state = GameState.jump;
+        else
+            state = GameState.normal;
+    }
+
+    public bool InitiateJump { get; set; } = false;
+
+    private void Update()
+    {
+        Debug.Log(state);
+    }
+
+    public void NextLevel()
+    {
+        levelController.LoadNextLevel();
+    }
+
+
 
 }

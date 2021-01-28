@@ -8,6 +8,7 @@ public class UserInterface : MonoBehaviour
 
     private int block = 100;
     [SerializeField] GameController gameState;
+    [SerializeField] LevelController levelController;
     
     public int GetBlock()
     {
@@ -25,12 +26,15 @@ public class UserInterface : MonoBehaviour
         gameState.GetStateOfMenu(menu.activeSelf);
     }
 
-    [SerializeField] private GameObject[] buttons = null;
+    private GameObject[] buttons;
 
-    [SerializeField] private GameObject dropDown = null;
+    private GameObject dropDown; 
+
     [SerializeField] private Vector2 dropDownCoord;
 
-    [SerializeField] RectTransform rectTransDropDown;
+    private RectTransform rectTransDropDown;
+
+    [SerializeField] bool isMenuSceneOpen;
 
 
 
@@ -45,10 +49,16 @@ public class UserInterface : MonoBehaviour
     // account for that as well.
 
     void Start()
-    {
-        WorldtoCanvasCoords();
-        initialPos = rectTransDropDown.anchoredPosition;
-        Debug.Log(rectTransDropDown.anchoredPosition);
+    {       
+        buttons = GameObject.FindGameObjectsWithTag("Buttons");
+        dropDown = GameObject.FindGameObjectWithTag("OpenSelection");        
+        rectTransDropDown = dropDown.GetComponent<RectTransform>();
+        if (!isMenuSceneOpen)
+        {
+            WorldtoCanvasCoords();
+            initialPos = rectTransDropDown.anchoredPosition;
+        }
+   
     }
 
 
@@ -87,6 +97,8 @@ public class UserInterface : MonoBehaviour
         }
 
     }
+
+    public void LoadLevel(int level) { levelController.LoadLevel(level); } 
 
 
 

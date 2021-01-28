@@ -21,4 +21,16 @@ public class LevelController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
+    public void LoadLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    
 }

@@ -10,7 +10,7 @@ public class MovementController : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
 
-    [SerializeField] GameController gameState;
+    [SerializeField] GameController gameControl;
 
    
 
@@ -22,7 +22,9 @@ public class MovementController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            
         }
+        
     }
 
     private void FixedUpdate()
@@ -36,9 +38,15 @@ public class MovementController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.name == "skull(Clone)")
+        if(collision.collider.name == "Death Blocks")
         {
-            gameState.SetGameState(0);
+            gameControl.SetGameState(0);
         }
+
+        if(collision.collider.name == "Goal")
+        {
+            gameControl.NextLevel();
+        }
+        
     }
 }

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fallMultiplier;
     [SerializeField] private float lowJumpMultiplier;
 
-    [SerializeField] GameController gameState;
+    [SerializeField] GameController gameControl;
     bool menuCheck = true;
     Vector3 pausedSpeed;
 
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 isGrounded = true;
-                gameState.SetGameState(1);
+                
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
             }
@@ -100,7 +100,8 @@ public class PlayerController : MonoBehaviour
             // Add a vertical force to the player.
             isGrounded = false;
             rb.AddForce(new Vector2(0f, jumpForce));
-            gameState.SetGameState(3);
+            gameControl.InitiateJump = true;
+            
         }
     }
 
